@@ -73,10 +73,8 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	// Handle different functions
 	if function == "init" { //initialize the chaincode state, used as reset
-		return nil, errors.New("[Invoke, init] i'm here!")
 		return t.Init(stub, "init", args)
 	} else if function == "PutEvent" {
-		return nil, errors.New("[Invoke] why i'm here???")
 		return t.PutEvent(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function) //error
@@ -109,6 +107,7 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	if len(args) != 8 {
 		return nil, errors.New("[PutEvent] Incorrect number of arguments. Expecting 11.")
 	}
+	return nil, errors.New("Check out the lenth of args " + string(len(args)))
 
 	//put all parameters to event
 	event.id = args[0]
