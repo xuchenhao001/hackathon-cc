@@ -18,26 +18,26 @@ var iot_key = "_iot_key"
 var event_key = "_event_key"
 
 type Property struct {
-	id    string `json:"PROPERTY_ID"`
-	value string `json:"VALUE"`
+	Id    string `json:"PROPERTY_ID"`
+	Value string `json:"VALUE"`
 }
 
 type Iot struct {
-	id       string `json:"IOT_ID"`
-	model    string `json:"MODEL"`
-	property string `json:"PROPERTY"`
-	id_event string `json:"EVENT_ID"`
+	Id       string `json:"IOT_ID"`
+	Model    string `json:"MODEL"`
+	Property string `json:"PROPERTY"`
+	Id_event string `json:"EVENT_ID"`
 }
 
 type Event struct {
-	id       string `json:"EVENT_ID"`
-	id_car   string `json:"CAR_ID"`
-	owner    string `json:"OWNER"`
-	day_code string `json:"DAY_CODE"`
-	location string `json:"LOCATION"`
-	image    string `json:"IMAGE"`
-	describe string `json:"DESCRIBE"`
-	iot      string `json:"IOT"`
+	Id       string `json:"EVENT_ID"`
+	Id_car   string `json:"CAR_ID"`
+	Owner    string `json:"OWNER"`
+	Day_code string `json:"DAY_CODE"`
+	Location string `json:"LOCATION"`
+	Image    string `json:"IMAGE"`
+	Describe string `json:"DESCRIBE"`
+	Iot      string `json:"IOT"`
 }
 
 type AllEvent struct {
@@ -109,17 +109,17 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	}
 
 	//put all parameters to event
-	event.id = args[0]
-	event.id_car = args[1]
-	event.owner = args[2]
-	event.day_code = args[3]
-	event.location = args[4]
-	event.image = args[5]
-	event.describe = args[6]
-	event.iot = args[7]
+	event.Id = args[0]
+	event.Id_car = args[1]
+	event.Owner = args[2]
+	event.Day_code = args[3]
+	event.Location = args[4]
+	event.Image = args[5]
+	event.Describe = args[6]
+	event.Iot = args[7]
 
 	//split Iot informations, get the number of IOTs
-	iot_infos := strings.Split(event.iot, "|")
+	iot_infos := strings.Split(event.Iot, "|")
 	fmt.Printf("There are %d IOTs.", len(iot_infos))
 
 	//return nil, errors.New("Get point B：" + args[7])
@@ -131,15 +131,11 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	var all_events AllEvent
 	json.Unmarshal(tmpBytes, &all_events)
 	all_events.events = append(all_events.events, event)
-	cache, _ := json.Marshal(all_events)
-	return nil, errors.New("No fuck fuck fuck fuck " + string(cache))
+	//cache, _ := json.Marshal(all_events)
+	//return nil, errors.New("No fuck fuck fuck fuck " + string(cache))
 	jsonAsBytes, _ := json.Marshal(all_events)
 	//return nil, errors.New("Get point C：" + args[7])
 	err = stub.PutState(event_key, jsonAsBytes) //rewrite open orders
-	tmpBytes, err = stub.GetState(event_key)
-	json.Unmarshal(tmpBytes, &all_events)
-	cache, _ = json.Marshal(all_events)
-	return nil, errors.New("Ok fuck fuck fuck fuck " + string(cache))
 	if err != nil {
 		return nil, err
 	}
@@ -167,7 +163,7 @@ func (t *SimpleChaincode) GetTimeline(stub shim.ChaincodeStubInterface, args []s
 	json.Unmarshal(tmpBytes, &all_events)
 	var processed AllEvent
 	for i := range all_events.events {
-		event_car_id := all_events.events[i].id_car
+		event_car_id := all_events.events[i].Id_car
 		if event_car_id == car_id {
 			processed.events = append(processed.events, all_events.events[i])
 		}
@@ -197,7 +193,7 @@ func (t *SimpleChaincode) GetInsuranceEvent(stub shim.ChaincodeStubInterface, ar
 	json.Unmarshal(tmpBytes, &all_events)
 	var processed AllEvent
 	for i := range all_events.events {
-		event_car_id := all_events.events[i].id_car
+		event_car_id := all_events.events[i].Id_car
 		if event_car_id == car_id {
 			processed.events = append(processed.events, all_events.events[i])
 		}
