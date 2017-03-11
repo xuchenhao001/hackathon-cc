@@ -92,6 +92,8 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 		return t.GetTimeline(stub, args)
 	} else if function == "GetInsuranceEvent" {
 		return t.GetInsuranceEvent(stub, args)
+	} else if function == "read" {
+		return t.read(stub, args)
 	}
 	fmt.Println("query did not find func: " + function) //error
 
@@ -197,4 +199,18 @@ func (t *SimpleChaincode) GetInsuranceEvent(stub shim.ChaincodeStubInterface, ar
 	jsonAsBytes, _ := json.Marshal(processed)
 
 	return jsonAsBytes, nil
+}
+
+func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+	fcn := args[0]
+	if fcn == "read" {
+		valAsbytes, err := stub.GetState(event_key)
+		if err != nil {
+			jsonResp := "{\"Error\":\"Failed to get state for " + args[1] + "\"}"
+			return nil, errors.New(jsonResp)
+		}
+		return valAsbytes, nil
+	}
+
+	return nil, nil
 }
