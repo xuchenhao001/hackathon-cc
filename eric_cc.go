@@ -14,15 +14,15 @@ type SimpleChaincode struct {
 }
 
 type Property struct {
-	id    int
-	value string
+	id    string `json:"PROPERTY_ID"`
+	value string `json:"VALUE"`
 }
 
 type Iot struct {
-	id       int    `json:"IOT_ID"`
+	id       string `json:"IOT_ID"`
 	model    string `json:"MODEL"`
 	property string `json:"PROPERTY"`
-	id_event int    `json:"EVENT_ID"`
+	id_event string `json:"EVENT_ID"`
 }
 
 type Event struct {
@@ -76,6 +76,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	if function == "init" { //initialize the chaincode state, used as reset
 		return t.Init(stub, "init", args)
 	} else if function == "PutEvent" {
+		return nil, errors.New("[Invoke] why i'm here???")
 		return t.PutEvent(stub, args)
 	}
 	fmt.Println("invoke did not find func: " + function) //error
