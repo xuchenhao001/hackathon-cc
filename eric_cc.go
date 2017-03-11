@@ -40,7 +40,9 @@ type AllEvent struct {
 	events []Event `json:"EVENTS"`
 }
 
-var minimalTxStr = "_minimaltx"
+//global variable of indexs and values
+var iot_key = "_iot_key"
+var event_key = "_event_key"
 
 // ============================================================================================================================
 // Main
@@ -56,8 +58,10 @@ func main() {
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	//just prepare for search
 	var all_event AllEvent
-	jsonAsBytes, _ := json.Marshal(all_event) //clear the open trade struct
-	err := stub.PutState(minimalTxStr, jsonAsBytes)
+
+	//init the values
+	jsonAsBytes, _ := json.Marshal(all_event)
+	err := stub.PutState(event_key, jsonAsBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +103,7 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	var err error
 	fmt.Println("running PutEvent()")
 
-	if len(args) != 11 {
+	if len(args) != 8 {
 		return nil, errors.New("[PutEvent] Incorrect number of arguments. Expecting 11.")
 	}
 
@@ -118,11 +122,19 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	fmt.Printf("There are %d IOTs.", len(iot_infos))
 
 	//save event to BlockChain
-	jsonAsBytes, _ := json.Marshal(event)
-	err = stub.PutState(event.id, jsonAsBytes)
+	tmpBytes, err := stub.GetState(event_key)
+	if err != nil {
+		return nil, errors.New("Failed to get events")
+	}
+	var all_events AllEvent
+	json.Unmarshal(tmpBytes, &all_events)
+	all_events.events = append(all_events.events, event)
+	jsonAsBytes, _ := json.Marshal(all_events)
+	err = stub.PutState(event_key, jsonAsBytes) //rewrite open orders
 	if err != nil {
 		return nil, err
 	}
+
 	return nil, nil
 }
 
@@ -137,7 +149,7 @@ func (t *SimpleChaincode) GetTimeline(stub shim.ChaincodeStubInterface, args []s
 	car_id = args[0]
 
 	//get all of the car_ids here
-	tmpBytes, err := stub.GetState(minimalTxStr)
+	tmpBytes, err := stub.GetState(event_key)
 	if err != nil {
 		jsonResp = "{\"Error\":\"Failed to get state for " + car_id + "\"}"
 		return nil, errors.New(jsonResp)
@@ -151,7 +163,6 @@ func (t *SimpleChaincode) GetTimeline(stub shim.ChaincodeStubInterface, args []s
 			processed.events = append(processed.events, all_events.events[i])
 		}
 	}
-
 	jsonAsBytes, _ := json.Marshal(processed)
 
 	return jsonAsBytes, nil
@@ -168,7 +179,7 @@ func (t *SimpleChaincode) GetInsuranceEvent(stub shim.ChaincodeStubInterface, ar
 	car_id = args[0]
 
 	//get all of the car_ids here
-	tmpBytes, err := stub.GetState(minimalTxStr)
+	tmpBytes, err := stub.GetState(event_key)
 	if err != nil {
 		jsonResp = "{\"Error\":\"Failed to get state for " + car_id + "\"}"
 		return nil, errors.New(jsonResp)
