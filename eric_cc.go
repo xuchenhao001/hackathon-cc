@@ -71,7 +71,6 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 
 // Invoke is our entry point to invoke a chaincode function
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
-	return nil, errors.New("[Invoke] Is invoke running???")
 	// Handle different functions
 	if function == "init" { //initialize the chaincode state, used as reset
 		return nil, errors.New("[Invoke, init] i'm here!")
