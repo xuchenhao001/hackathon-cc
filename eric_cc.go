@@ -137,7 +137,7 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	tmpBytes, err = stub.GetState(event_key)
 	json.Unmarshal(tmpBytes, &all_events)
 	cache, _ := json.Marshal(all_events)
-	return cache, nil
+	return nil, errors.New("Ok fuck fuck fuck fuck " + cache)
 	if err != nil {
 		return nil, err
 	}
