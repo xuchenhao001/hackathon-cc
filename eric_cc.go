@@ -132,12 +132,12 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	json.Unmarshal(tmpBytes, &all_events)
 	all_events.events = append(all_events.events, event)
 	jsonAsBytes, _ := json.Marshal(all_events)
-	return nil, errors.New("Get point C：" + args[7])
+	//return nil, errors.New("Get point C：" + args[7])
 	err = stub.PutState(event_key, jsonAsBytes) //rewrite open orders
 	if err != nil {
 		return nil, err
 	}
-
+	return nil, errors.New("Get point D：" + args[7])
 	return nil, nil
 }
 
