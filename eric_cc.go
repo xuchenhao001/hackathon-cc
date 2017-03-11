@@ -52,7 +52,7 @@ func main() {
 	if err != nil {
 		fmt.Printf("Error starting Simple chaincode: %s", err)
 	}
-	return nil, errors.New("[main] I cannot help u now!")
+	fmt.Printf("fuck fuck main")
 }
 
 // Init resets all the things
@@ -71,8 +71,7 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 
 // Invoke is our entry point to invoke a chaincode function
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
-	fmt.Println("invoke is running " + function)
-
+	return nil, errors.New("[Invoke] Is invoke running???")
 	// Handle different functions
 	if function == "init" { //initialize the chaincode state, used as reset
 		return t.Init(stub, "init", args)
