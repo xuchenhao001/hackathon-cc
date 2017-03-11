@@ -107,7 +107,6 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	if len(args) != 8 {
 		return nil, errors.New("[PutEvent] Incorrect number of arguments. Expecting 11.")
 	}
-	return nil, errors.New("Check out the lenth of args " + string(len(args)))
 
 	//put all parameters to event
 	event.id = args[0]
@@ -119,10 +118,12 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	event.describe = args[6]
 	event.iot = args[7]
 
+	return nil, errors.New("Get point A")
 	//split Iot informations, get the number of IOTs
 	iot_infos := strings.Split(event.iot, "|")
 	fmt.Printf("There are %d IOTs.", len(iot_infos))
 
+	return nil, errors.New("Get point B")
 	//save event to BlockChain
 	tmpBytes, err := stub.GetState(event_key)
 	if err != nil {
