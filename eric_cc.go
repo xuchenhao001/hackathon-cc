@@ -159,6 +159,8 @@ func (t *SimpleChaincode) GetTimeline(stub shim.ChaincodeStubInterface, args []s
 	}
 	var all_events AllEvent
 	json.Unmarshal(tmpBytes, &all_events)
+	cache, _ := json.Marshal(all_events)
+	return cache, nil
 	var processed AllEvent
 	for i := range all_events.events {
 		event_car_id := all_events.events[i].id_car
