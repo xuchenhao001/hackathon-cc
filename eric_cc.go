@@ -74,6 +74,7 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function stri
 	return nil, errors.New("[Invoke] Is invoke running???")
 	// Handle different functions
 	if function == "init" { //initialize the chaincode state, used as reset
+		return nil, errors.New("[Invoke, init] i'm here!")
 		return t.Init(stub, "init", args)
 	} else if function == "PutEvent" {
 		return nil, errors.New("[Invoke] why i'm here???")
