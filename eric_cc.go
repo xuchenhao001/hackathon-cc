@@ -137,7 +137,7 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	if err != nil {
 		return nil, err
 	}
-	return nil, errors.New("Get point D：" + args[7])
+	//return nil, errors.New("Get point D：" + args[7])
 	return nil, nil
 }
 
