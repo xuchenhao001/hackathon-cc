@@ -122,7 +122,7 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	iot_infos := strings.Split(event.iot, "|")
 	fmt.Printf("There are %d IOTs.", len(iot_infos))
 
-	return nil, errors.New("Get point B：" + args[7])
+	//return nil, errors.New("Get point B：" + args[7])
 	//save event to BlockChain
 	tmpBytes, err := stub.GetState(event_key)
 	if err != nil {
@@ -132,6 +132,7 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	json.Unmarshal(tmpBytes, &all_events)
 	all_events.events = append(all_events.events, event)
 	jsonAsBytes, _ := json.Marshal(all_events)
+	return nil, errors.New("Get point C：" + args[7])
 	err = stub.PutState(event_key, jsonAsBytes) //rewrite open orders
 	if err != nil {
 		return nil, err
