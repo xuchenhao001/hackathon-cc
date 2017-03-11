@@ -13,6 +13,10 @@ import (
 type SimpleChaincode struct {
 }
 
+//global variable of indexs and values
+var iot_key = "_iot_key"
+var event_key = "_event_key"
+
 type Property struct {
 	id    string `json:"PROPERTY_ID"`
 	value string `json:"VALUE"`
@@ -39,10 +43,6 @@ type Event struct {
 type AllEvent struct {
 	events []Event `json:"EVENTS"`
 }
-
-//global variable of indexs and values
-var iot_key = "_iot_key"
-var event_key = "_event_key"
 
 // ============================================================================================================================
 // Main
