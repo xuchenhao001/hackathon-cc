@@ -131,12 +131,14 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	var all_events AllEvent
 	json.Unmarshal(tmpBytes, &all_events)
 	all_events.events = append(all_events.events, event)
+	cache, _ := json.Marshal(all_events)
+	return nil, errors.New("No fuck fuck fuck fuck " + string(cache))
 	jsonAsBytes, _ := json.Marshal(all_events)
 	//return nil, errors.New("Get point C：" + args[7])
 	err = stub.PutState(event_key, jsonAsBytes) //rewrite open orders
 	tmpBytes, err = stub.GetState(event_key)
 	json.Unmarshal(tmpBytes, &all_events)
-	cache, _ := json.Marshal(all_events)
+	cache, _ = json.Marshal(all_events)
 	return nil, errors.New("Ok fuck fuck fuck fuck " + string(cache))
 	if err != nil {
 		return nil, err
