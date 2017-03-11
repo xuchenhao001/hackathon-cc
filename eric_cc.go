@@ -41,7 +41,7 @@ type Event struct {
 }
 
 type AllEvent struct {
-	events []Event `json:"EVENTS"`
+	Events []Event `json:"EVENTS"`
 }
 
 // ============================================================================================================================
@@ -130,7 +130,7 @@ func (t *SimpleChaincode) PutEvent(stub shim.ChaincodeStubInterface, args []stri
 	}
 	var all_events AllEvent
 	json.Unmarshal(tmpBytes, &all_events)
-	all_events.events = append(all_events.events, event)
+	all_events.Events = append(all_events.Events, event)
 	//cache, _ := json.Marshal(all_events)
 	//return nil, errors.New("No fuck fuck fuck fuck " + string(cache))
 	jsonAsBytes, _ := json.Marshal(all_events)
@@ -162,10 +162,10 @@ func (t *SimpleChaincode) GetTimeline(stub shim.ChaincodeStubInterface, args []s
 	var all_events AllEvent
 	json.Unmarshal(tmpBytes, &all_events)
 	var processed AllEvent
-	for i := range all_events.events {
-		event_car_id := all_events.events[i].Id_car
+	for i := range all_events.Events {
+		event_car_id := all_events.Events[i].Id_car
 		if event_car_id == car_id {
-			processed.events = append(processed.events, all_events.events[i])
+			processed.Events = append(processed.Events, all_events.Events[i])
 		}
 	}
 	jsonAsBytes, _ := json.Marshal(processed)
@@ -192,10 +192,10 @@ func (t *SimpleChaincode) GetInsuranceEvent(stub shim.ChaincodeStubInterface, ar
 	var all_events AllEvent
 	json.Unmarshal(tmpBytes, &all_events)
 	var processed AllEvent
-	for i := range all_events.events {
-		event_car_id := all_events.events[i].Id_car
+	for i := range all_events.Events {
+		event_car_id := all_events.Events[i].Id_car
 		if event_car_id == car_id {
-			processed.events = append(processed.events, all_events.events[i])
+			processed.Events = append(processed.Events, all_events.Events[i])
 		}
 	}
 
