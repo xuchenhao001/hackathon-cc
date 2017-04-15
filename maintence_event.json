@@ -1,0 +1,67 @@
+{
+  "data":[
+    {
+      "ID": 1,
+      "FirstName": "John",
+      "LastName": "Heart",
+      "Type": "change lantern",
+      "Position": "Beijing",
+      "Picture": "images/employees/01.png",
+      "Time": "2012/03/16",
+      "HireDate": "1995/01/15",
+      "Notes": "John has been in the Audio/Video industry since 1990. He has led DevAv as its CEO since 2003.\r\n\r\nWhen not working hard as the CEO, John loves to golf and bowl. He once bowled a perfect game of 300.",
+      "Address": "351 S Hill St.",
+      "State": "California",
+      "City": "Los Angeles",
+      "Tasks": [
+        {
+          "ID": 5,
+          "Subject": "Change Glass",
+          "Material": "free check "
+        },
+        {
+          "ID": 6,
+          "Subject": "simple maintence",
+          "Material": "change wheel"
+        }
+      ],
+      "Kilometers": 8956
+    },
+    {
+      "ID": 2,
+      "FirstName": "Olivia",
+      "LastName": "Peyton",
+      "Type": "In Car",
+      "Position": "ShangHai",
+      "Picture": "images/employees/09.png",
+      "Time": "2015/06/03",
+      "HireDate": "2012/05/14",
+      "Notes": "Olivia loves to sell. She has been selling DevAV products since 2012. \r\n\r\nOlivia was homecoming queen in high school. She is expecting her first child in 6 months. Good Luck Olivia.",
+      "Address": "807 W Paseo Del Mar",
+      "State": "California",
+      "City": "Los Angeles",
+      "Tasks": [
+        {
+          "ID": 3,
+          "Subject": "take a new seat ",
+          "StartDate": "2013-02-03T00:00:00",
+          "DueDate": "2013-02-28T00:00:00",
+          "Status": "Completed",
+          "Priority": "High",
+          "Completion": 100
+        },
+        {
+          "ID": 4,
+          "Subject": "change pink ",
+          "StartDate": "2013-02-12T00:00:00",
+          "DueDate": "2013-04-25T00:00:00",
+          "Status": "In Progress",
+          "Priority": "High",
+          "Completion": 50
+        }
+      ],
+      "Kilometers": 23425
+    }
+  ]
+}
+

@@ -1,0 +1,57 @@
+[{
+  "ID": 1,
+  "Number": "33456YU32HK23",
+  "Detail": "for glass of car",
+  "StartTime": "2013/03/01",
+  "EndTime": "2014/03/01",
+
+  "FirstName": "John",
+  "LastName": "Heart",
+  "Prefix": "Mr.",
+  "Position": "CEO",
+  "Picture": "images/employees/01.png",
+  "Time": "1964/03/16",
+  "HireDate": "1995/01/15",
+  "Notes": "John has been in the Audio/Video industry since 1990. He has led DevAv as its CEO since 2003.\r\n\r\nWhen not working hard as the CEO, John loves to golf and bowl. He once bowled a perfect game of 300.",
+  "Address": "351 S Hill St.",
+  "State": "California",
+  "City": "Los Angeles",
+  "Tasks": [{
+    "ID": 5,
+    "time":"2014-03-01T14:20:37",
+    "place":"Nanjing Road",
+    "description":"when the car driving in the road, crashed by another car,it led to glass is broken ",
+    "Accident_Type":"Traffic accident",
+    "DamageDegree":"Serious"
+  }]
+}, {
+  "ID": 2,
+  "Number": "33456YU32HK24",
+  "Detail": "for  Light",
+  "StartTime": "2014/05/30",
+  "EndTime": "2015/05/30",
+
+  "FirstName": "Olivia",
+  "LastName": "Peyton",
+  "Prefix": "Mrs.",
+  "Position": "Sales Assistant",
+  "Picture": "images/employees/09.png",
+  "Time": "1981/06/03",
+  "HireDate": "2012/05/14",
+  "Notes": "Olivia loves to sell. She has been selling DevAV products since 2012. \r\n\r\nOlivia was homecoming queen in high school. She is expecting her first child in 6 months. Good Luck Olivia.",
+  "Address": "807 W Paseo Del Mar",
+  "State": "California",
+  "City": "Los Angeles",
+  "Tasks": [
+    {
+      "ID": 6,
+
+      "time":"2014-03-01T14:20:37",
+      "place":"Nanjing Road",
+      "description":"when the car driving in the road, crashed by another car,it led to glass is broken ",
+      "Accident_Type":"Traffic accident",
+      "DamageDegree":"Serious"
+
+    }
+  ]
+}]
